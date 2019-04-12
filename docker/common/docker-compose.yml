@@ -1,11 +1,11 @@
 eurekaserver:
-   image:   bengugit01/tmx-eurekasvr:${BUILD_NAME}
+   image:   bengu/tmx-eurekasvr:${BUILD_NAME}
    mem_limit: 1073741824
    ports:
        - "8761:8761"
 
 configserver:
-    image: bengugit01/tmx-confsvr:${BUILD_NAME}
+    image: bengu/tmx-confsvr:${BUILD_NAME}
     #mem_limit: 1073741824
     mem_limit: 1000000000
     ports:
@@ -17,7 +17,7 @@ configserver:
        ENCRYPT_KEY:       "IMSYMMETRIC"
 
 zuulserver:
-    image: bengugit01/tmx-zuulsvr:${BUILD_NAME}
+    image: bengu/tmx-zuulsvr:${BUILD_NAME}
     mem_limit: 1073741824
     ports:
       - "5555:5555"
@@ -31,7 +31,7 @@ zuulserver:
       EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
 
 licensingservice:
-    image: bengugit01/tmx-licensing-service:${BUILD_NAME}
+    image: bengu/tmx-licensing-service:${BUILD_NAME}
     mem_limit: 1073741824
     ports:
       - "8080:8080"
@@ -52,7 +52,7 @@ licensingservice:
       ENCRYPT_KEY:       "IMSYMMETRIC"
 
 authenticationservice:
-    image: bengugit01/tmx-authentication-service:${BUILD_NAME}
+    image: bengu/tmx-authentication-service:${BUILD_NAME}
     mem_limit: 1073741824
     ports:
       - "8901:8901"
@@ -68,7 +68,7 @@ authenticationservice:
       ENCRYPT_KEY:       "IMSYMMETRIC"
 
 organizationservice:
-    image: bengugit01/tmx-organization-service:${BUILD_NAME}
+    image: bengu/tmx-organization-service:${BUILD_NAME}
     mem_limit: 1073741824
     ports:
       - "8085:8085"
