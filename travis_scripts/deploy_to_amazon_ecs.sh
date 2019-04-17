@@ -9,7 +9,7 @@ cluster_name="${profile_name}-cluster"
 group_id="sg-0775bffeced4f315d"
 
 # use role as created by AWS during manual cluster creation 
-role_name="ECSExampleRole"
+role_name="ecsInstanceProfileMedium"
 tier_class="t2.large"
 keypair="mykey"
 service_name="spmia-service-${env}"
