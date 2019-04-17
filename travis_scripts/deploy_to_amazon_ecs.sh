@@ -6,6 +6,8 @@ env="dev"
 profile_name="spmia-${env}"
 cluster_name="${profile_name}-cluster"
 
+group_id="sg-0775bffeced4f315d"
+
 # use role as crearole_name="ecsInstanceRole"ted by AWS during manual cluster creation 
 role_name="ecsInstanceRole"
 tier_class="t2.large"

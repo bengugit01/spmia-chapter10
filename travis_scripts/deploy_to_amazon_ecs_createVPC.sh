@@ -3,8 +3,13 @@
 # By:   Ben
 # Date: 17/4/2019
 
+export AWS_ACCESS_KEY_ID=AKIATTJ5K5Q74BGKVT6L
+export AWS_SECRET_ACCESS_KEY=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
+
+
 env="dev"
 name="spmia-${env}"
+region="ap-southeast-2"
 vpc_name="${name} VPC"
 
 #loadbalancer_name="${cluster_name}-loadbalancer"
@@ -51,7 +56,7 @@ modify_response=$(aws --region ${region} ec2 modify-vpc-attribute --vpc-id "${vp
 #gateway_response=$(aws --region ${region} ec2 create-internet-gateway --output json)
 #gateway_id=$(echo -e "${gateway_response}" |  jq '.InternetGateway.InternetGatewayId' | tr -d '"')
 #aws --region ${region} ec2 create-tags --resources "${gateway_id}" --tags Key=Name,Value="${gateway_name}"
-attach_response=$(aws --region ${region} ec2 attach-internet-gateway --internet-gateway-id "${gateway_id}" --vpc-id "${vpc_id}")
+#attach_response=$(aws --region ${region} ec2 attach-internet-gateway --internet-gateway-id "${gateway_id}" --vpc-id "${vpc_id}")
 
 subnet_response_1=$(aws --region ${region} ec2 create-subnet --cidr-block "${subnet_cidr_block_1}" --availability-zone "${availability_zone_1}" --vpc-id "${vpc_id}"  --output json)
 subnet_id_1=$(echo -e "$subnet_response_1" |  jq '.Subnet.SubnetId' | tr -d '"')
