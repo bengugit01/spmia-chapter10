@@ -3,9 +3,6 @@
 # By:   Ben
 # Date: 17/4/2019
 
-export AWS_ACCESS_KEY_ID=AKIATTJ5K5Q74BGKVT6L
-export AWS_SECRET_ACCESS_KEY=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
-
 
 env="dev"
 name="spmia-${env}"
