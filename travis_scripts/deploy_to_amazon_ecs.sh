@@ -26,7 +26,7 @@ ecs-cli configure --region ap-southeast-2  --cluster ${cluster_name} --default-l
 echo ""
 echo "[*] [$( date +'%H:%M:%S')] Bring up EC2 instance..."
 # bring up cluster
-ecs-cli up  --instance-type ${tier_class}  --vpc ${vpc_id} --cluster-config ${profile_name} --subnets ${subnet_id_1},${subnet_id_2} --security-group ${group_id}  --instance-role ${instance_profile_name} --keypair ${keypair} --ecs-profile ${profile_name}
+ecs-cli up  --instance-type ${tier_class}  --vpc ${vpc_id} --cluster-config ${profile_name} --subnets ${subnet_id_1},${subnet_id_2} --security-group ${group_id}  --capability-iam --keypair ${keypair} --ecs-profile ${profile_name}
 
 echo ""
 echo "[*] [$( date +'%H:%M:%S')] Create Services in ECS cluster as defined in docker-compose.yml..."
