@@ -32,18 +32,18 @@ delete_instance_profile_response=$( aws iam delete-instance-profile --instance-p
 echo "delete_instance_profile_response returned =${delete_instance_profile_response}"
 
 
-
-
 echo ""
 echo "[*] [$( date +'%H:%M:%S')] Creating IAM role for ECS instances..."
 create_role_response=$( aws iam create-role --role-name ${role_name} --assume-role-policy-document file://ecs-policy.json --description "ECS Cluster default role" )
 echo "create_role_response returned =${create_role_response}"
 
 echo ""
-put_role_policy_response=$( aws iam put-role-policy --role-name ${role_name} --policy-name ${policy_name}  --policy-document file://ecs-role.json ) 
-echo "put_role_policy_response returned =${put_role_policy_response}"
+attach_role_policy_response=$( aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role --role-name ${role_name} ) 
+
+echo "attach_role_policy_response returned =${attach_role_policy_response}"
+
 
 echo ""
-create_instance_profile_response=$( aws iam create-instance-profile --instance-profile-name ${instance_profile_name}  )
-add_role_to_instance_response=$( aws iam add-role-to-instance-profile --instance-profile-name ${instance_profile_name} --role-name ${role_name} )
+create_instance_profile_response=$( aws iam create-instance-profile --instance-profile-name ${role_name}  )
+add_role_to_instance_response=$( aws iam add-role-to-instance-profile --instance-profile-name ${role_name} --role-name ${role_name} )
 echo "create_instance_profile_response returned =${create_instance_profile_response}"

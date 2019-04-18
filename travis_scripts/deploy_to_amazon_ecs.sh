@@ -19,7 +19,7 @@ region=ap-southeast-2
 subnet_id_1=subnet-059f277140f66d303
 subnet_id_2=subnet-0067c05ad6c3782d4
 group_id=sg-0775bffeced4f315d
-instance_profile_name="spmia-dev-InstanceProfile"
+instance_profile_name="spmia-dev-Role"
 role_name="spmia-dev-Role"
 
 echo "[*] [$( date +'%H:%M:%S')] Configure ECS profile..."
