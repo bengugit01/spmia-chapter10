@@ -6,22 +6,28 @@ env="dev"
 profile_name="spmia-${env}"
 cluster_name="${profile_name}-cluster"
 
-group_id="sg-0775bffeced4f315d"
-
-# use role as created by AWS during manual cluster creation 
-role_name="ecsInstanceProfileMedium"
 tier_class="t2.large"
 keypair="mykey"
 service_name="spmia-service-${env}"
 
-# Note:  instance_profile_name was set in deploy_to_amazon_ecs_create_role_instancProfile.sh
+
+# Note:  the following are created by 
+#	deploy_to_amazon_ecs_createVPC.sh
+#   deploy_to_amazon_ecs_create_role_instancProfile.sh
+vpc_id=vpc-07d6c1b46ad4ac180
+region=ap-southeast-2
+subnet_id_1=subnet-059f277140f66d303
+subnet_id_2=subnet-0067c05ad6c3782d4
+group_id=sg-0775bffeced4f315d
 instance_profile_name="spmia-dev-InstanceProfile"
+
 
 echo "[*] [$( date +'%H:%M:%S')] Configure ECS profile..."
 ecs-cli configure profile --profile-name ${profile_name} --access-key $AWS_ACCESS_KEY --secret-key $AWS_SECRET_KEY
 
 echo "[*] [$( date +'%H:%M:%S')] Configure ECS cluster before launch..."
 ecs-cli configure --region ap-southeast-2  --cluster ${cluster_name} --default-launch-type EC2 --config-name ${profile_name} 		
+
 	
 echo ""
 echo "Checking the environment variables set:"
