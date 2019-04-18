@@ -20,7 +20,7 @@ subnet_id_1=subnet-059f277140f66d303
 subnet_id_2=subnet-0067c05ad6c3782d4
 group_id=sg-0775bffeced4f315d
 instance_profile_name="spmia-dev-InstanceProfile"
-
+role_name="spmia-dev-Role"
 
 echo "[*] [$( date +'%H:%M:%S')] Configure ECS profile..."
 ecs-cli configure profile --profile-name ${profile_name} --access-key $AWS_ACCESS_KEY --secret-key $AWS_SECRET_KEY
@@ -40,7 +40,7 @@ echo "   instance_profile_name = ${instance_profile_name}"
 echo ""
 echo "[*] [$( date +'%H:%M:%S')] Bring up EC2 instance..."
 # bring up cluster
-ecs-cli up  --instance-type ${tier_class}  --vpc ${vpc_id} --cluster-config ${profile_name} --subnets ${subnet_id_1},${subnet_id_2} --security-group ${group_id}  --instance-role ${instance_profile_name}  --keypair ${keypair} --ecs-profile ${profile_name}
+ecs-cli up  --instance-type ${tier_class}  --vpc ${vpc_id} --cluster-config ${profile_name} --subnets ${subnet_id_1},${subnet_id_2} --security-group ${group_id}  --instance-role ${role_name}  --keypair ${keypair} --ecs-profile ${profile_name}
 
 echo ""
 echo "[*] [$( date +'%H:%M:%S')] Create Services in ECS cluster as defined in docker-compose.yml..."
