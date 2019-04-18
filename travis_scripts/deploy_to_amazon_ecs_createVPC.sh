@@ -2,7 +2,10 @@
 # Description: Scripts to create VPC, security-group and authorize access to port 22 and 5555 etc.
 # By:   Ben
 # Date: 17/4/2019
-
+# Note:  need to set environment variables on the command line:
+# export AWS_ACCESS_KEY_ID=
+# export AWS_SECRET_ACCESS_KEY=
+#
 
 env="dev"
 name="spmia-${env}"
@@ -11,9 +14,6 @@ vpc_name="${name} VPC"
 
 #loadbalancer_name="${cluster_name}-loadbalancer"
 #loadbalancer_targets_name="${cluster_name}-targets"
-
-#role_name="ECSExampleRole"
-
 
 availability_zone_1="ap-southeast-2a"
 availability_zone_2="ap-southeast-2b"
@@ -101,11 +101,3 @@ echo "region=$region" >> ecs_vpc.values
 echo "subnet_id_1=$subnet_id_1" >> ecs_vpc.values
 echo "subnet_id_2=$subnet_id_2" >> ecs_vpc.values
 echo "group_id=${group_id}" >> ecs_vpc.values
-
-echo ""
-echo "commented out the creation of role as it already created before. "
-echo "TBF:  write code to query if role ECSExampleRole exists or not, if not, run the following role-creation codes !!!"
-echo "[*] [$( date +'%H:%M:%S')] Creating IAM role for ECS instances... (gives you possibility to use your ECR - AWS private registry for example"
-#create_role_response=$( aws iam create-role --role-name ${role_name} --assume-role-policy-document file://ecs-policy.json --description "ECS Cluster default role" )
-
-# put_role_policy_response=$( aws iam put-role-policy --role-name ${role_name} --policy-name ecsMediumRolePolicy --policy-document file://ecs-role.json ) 
