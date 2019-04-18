@@ -22,11 +22,19 @@ ecs-cli configure profile --profile-name ${profile_name} --access-key $AWS_ACCES
 
 echo "[*] [$( date +'%H:%M:%S')] Configure ECS cluster before launch..."
 ecs-cli configure --region ap-southeast-2  --cluster ${cluster_name} --default-launch-type EC2 --config-name ${profile_name} 		
-			
+	
+echo ""
+echo "Checking the environment variables set:"
+echo "   vpc_id = ${vpc_id}"	
+echo "   profile_name = ${profile_name}"	
+echo "   subnet_id_1 = ${subnet_id_1}"	
+echo "   subnet_id_2 = ${subnet_id_2}"	
+echo "   group_id = ${group_id}"	
+echo "   instance_profile_name = ${instance_profile_name}"	
 echo ""
 echo "[*] [$( date +'%H:%M:%S')] Bring up EC2 instance..."
 # bring up cluster
-ecs-cli up  --instance-type ${tier_class}  --vpc ${vpc_id} --cluster-config ${profile_name} --subnets ${subnet_id_1},${subnet_id_2} --security-group ${group_id}  --capability-iam --keypair ${keypair} --ecs-profile ${profile_name}
+ecs-cli up  --instance-type ${tier_class}  --vpc ${vpc_id} --cluster-config ${profile_name} --subnets ${subnet_id_1},${subnet_id_2} --security-group ${group_id}  --instance-role ${instance_profile_name}  --keypair ${keypair} --ecs-profile ${profile_name}
 
 echo ""
 echo "[*] [$( date +'%H:%M:%S')] Create Services in ECS cluster as defined in docker-compose.yml..."
